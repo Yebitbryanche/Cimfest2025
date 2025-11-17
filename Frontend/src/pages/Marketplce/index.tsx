@@ -1,11 +1,11 @@
 import React from 'react'
 
-function index() {
+function Marketplace() {
   return (
     <div>
-      
+      <p>Marketplace</p>
     </div>
   )
 }
 
-export default index
+export default Marketplace

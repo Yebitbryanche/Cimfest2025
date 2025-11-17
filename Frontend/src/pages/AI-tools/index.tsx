@@ -1,11 +1,11 @@
 import React from 'react'
 
-function index() {
+function Ai_tools() {
   return (
     <div>
-      
+      <p>AI</p>
     </div>
   )
 }
 
-export default index
+export default Ai_tools
