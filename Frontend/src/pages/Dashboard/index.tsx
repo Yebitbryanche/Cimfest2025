@@ -1,11 +1,11 @@
 import React from 'react'
 
-function index() {
+function Dashboard() {
   return (
     <div>
-      
+      <p>Dashboard</p>
     </div>
   )
 }
 
-export default index
+export default Dashboard
