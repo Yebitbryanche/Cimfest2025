@@ -7,11 +7,12 @@ app = FastAPI()
 
 origin = "http://localhost:5173"
 
-@app.add_middleware(
+app.add_middleware(
+    CORSMiddleware,
     allow_origins = [origin],
-    allow_credentials = [True],
-    allow_headers = ['*'],
-    allow_methods = ['*']
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_headers = ["*"]
 )
 
 @app.on_event("startup")
