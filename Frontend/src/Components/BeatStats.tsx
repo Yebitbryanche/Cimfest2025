@@ -9,7 +9,7 @@ interface Props {
 
 const BeatStats: React.FC<Props> = ({ image, num, text, subtitle }) => {
   return (
-    <div className="border border-gray-700 rounded-2xl p-5 bg-black w-full shadow-md flex flex-col items-center transform transition-transform duration-300 hover:scale-105">
+    <div className="border border-gray-700 rounded-2xl p-5 bg-black/100 w-full shadow-md flex flex-col items-center transform transition-transform duration-300 hover:scale-105">
       
       {/* Top: Image & Icon */}
       <div className="flex justify-between items-center w-full">
