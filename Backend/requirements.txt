@@ -1,0 +1,7 @@
+fastapi[standard]
+sqlmodel
+pymysql
+passlib[bcrypt]
+argon2-cffi
+pydantic-settings
+python-jose[cryptography]
