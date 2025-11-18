@@ -3,6 +3,7 @@ import { GradientButton } from "../Components/GradientButton";
 import images from "../types/images";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 
+
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
