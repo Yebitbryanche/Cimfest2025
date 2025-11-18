@@ -8,7 +8,7 @@ const SignUp = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-tertiary">
+    <div className="min-h-screen flex items-center justify-center bg-tertiary p-10">
       <div className="bg-black/50 text-white p-8 rounded-xl shadow-xl w-full max-w-lg">
         
         {/* Logo & Title */}
@@ -38,6 +38,15 @@ const SignUp = () => {
           />
         </div>
 
+        <div className="flex flex-col mb-4">
+          <label className="mb-2 font-medium text-white">Phone Number</label>
+          <input
+            type="number"
+            placeholder="Your contact"
+            className="border border-gray-600 p-3 placeholder:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
+          />
+        </div>
+
         {/* Password */}
         <div className="flex flex-col mb-4">
           <label className="mb-2 font-medium text-white">Password</label>
@@ -63,7 +72,7 @@ const SignUp = () => {
             <input
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Re-enter password"
-              className="w-full border border-gray-600 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
+              className="w-full border border-gray-600 p-3 placeholder:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
             />
             <span
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}

@@ -6,6 +6,7 @@ import BeatsCard from "../../Components/BeatsCard";
 import { GiFlatStar } from "react-icons/gi";
 import { TbEditCircleOff } from "react-icons/tb";
 import { BsMusicNote } from "react-icons/bs";
+import images from "../../types/images";
 
 function Home() {
   return (
@@ -31,8 +32,11 @@ function Home() {
           <Link to="/uploadbeats">
             <GradientButton title="Start Creating" />
           </Link>
+  
           <Link to="/marketplace">
-            <Button title="Explore Beats" />
+            <Button title="Explore Beats">
+              <span>Explore Beats</span>
+              </Button>
           </Link>
         </div>
       </section>
@@ -89,19 +93,19 @@ function Home() {
 
         <div className="flex justify-center gap-5 py-5">
           <BeatsCard
-            image="/beats/beat1.jpg"
+            image={images.beat3}
             title="Summer Vibes"
             subtitle="DJ Neh"
             price="53450"
           />
           <BeatsCard
-            image="/beats/beat2.jpg"
+            image={images.beat1}
             title="Afro Groove"
             subtitle="DJ Nio"
             price="250"
           />
           <BeatsCard
-            image="/beats/beat3.jpg"
+            image={images.beat2}
             title="Romans Flow"
             subtitle="DJ Leo"
             price="1000"
@@ -109,65 +113,74 @@ function Home() {
         </div>
       </section>
       <section className="flex flex-col items-center px-4 py-12 max-w-6xl mx-auto">
-      {/* Heading */}
-      <h1 className="text-4xl sm:text-5xl font-bold mb-2 text-center">
-        AI-Powered <span className="text-primary">Creativity</span>
-      </h1>
-      <p className="text-gray-300 mb-8 text-center">
-        Let artificial intelligence amplify your artistic vision
-      </p>
+        {/* Heading */}
+        <h1 className="text-4xl sm:text-5xl font-bold mb-2 text-center">
+          AI-Powered <span className="text-primary">Creativity</span>
+        </h1>
+        <p className="text-gray-300 mb-8 text-center">
+          Let artificial intelligence amplify your artistic vision
+        </p>
 
-      {/* Features */}
-      <div className="flex flex-col md:flex-row gap-6 w-full mb-8">
-        {/* Lyric Generation */}
-        <div className="flex flex-row items-start gap-4 p-6 border border-gray-600 rounded-xl hover:border-primary transition w-full md:w-1/3">
-          <div className="border p-2 rounded-full text-primary text-2xl">
-            <GiFlatStar />
+        {/* Features */}
+        <div className="flex flex-col md:flex-row gap-6 w-full mb-8">
+          {/* Lyric Generation */}
+          <div className="flex flex-row items-start gap-4 p-6 border border-gray-600 rounded-xl hover:border-primary transition w-full md:w-1/3">
+            <div className="border p-2 rounded-full text-primary text-2xl">
+              <GiFlatStar />
+            </div>
+            <div>
+              <h2 className="font-bold text-lg">Lyric Generation</h2>
+              <p className="text-gray-300">
+                AI-powered lyrics based on your theme and mood
+              </p>
+            </div>
           </div>
-          <div>
-            <h2 className="font-bold text-lg">Lyric Generation</h2>
-            <p className="text-gray-300">AI-powered lyrics based on your theme and mood</p>
+
+          {/* Lyric Editing */}
+          <div className="flex flex-row items-start gap-4 p-6 border border-gray-600 rounded-xl hover:border-primary transition w-full md:w-1/3">
+            <div className="border p-2 rounded-full text-primary text-2xl">
+              <TbEditCircleOff />
+            </div>
+            <div>
+              <h2 className="font-bold text-lg">Lyric Editing</h2>
+              <p className="text-gray-300">
+                Refine your lyrics with smart AI suggestions
+              </p>
+            </div>
+          </div>
+
+          {/* Release Timing */}
+          <div className="flex flex-row items-start gap-4 p-6 border border-gray-600 rounded-xl hover:border-primary transition w-full md:w-1/3">
+            <div className="border p-2 rounded-full text-primary text-2xl">
+              <BsMusicNote />
+            </div>
+            <div>
+              <h2 className="font-bold text-lg">Release Timing</h2>
+              <p className="text-gray-300">
+                Data-driven insights for optimal release dates
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Lyric Editing */}
-        <div className="flex flex-row items-start gap-4 p-6 border border-gray-600 rounded-xl hover:border-primary transition w-full md:w-1/3">
-          <div className="border p-2 rounded-full text-primary text-2xl">
-            <TbEditCircleOff />
-          </div>
-          <div>
-            <h2 className="font-bold text-lg">Lyric Editing</h2>
-            <p className="text-gray-300">Refine your lyrics with smart AI suggestions</p>
-          </div>
+        {/* AI Lyrics Assistant */}
+        <div className="flex flex-col gap-4 w-full sm:w-2/3 p-6 border border-gray-600 rounded-xl mb-6">
+          <p className="font-semibold text-white">Try AI Lyrics Assistant</p>
+          <input
+            type="text"
+            placeholder="Describe your song theme"
+            className="p-2 rounded border border-gray-500 bg-black/20 text-white focus:outline-none focus:border-primary"
+          />
+          <GradientButton title="Generate Lyrics" />
         </div>
 
-        {/* Release Timing */}
-        <div className="flex flex-row items-start gap-4 p-6 border border-gray-600 rounded-xl hover:border-primary transition w-full md:w-1/3">
-          <div className="border p-2 rounded-full text-primary text-2xl">
-            <BsMusicNote />
-          </div>
-          <div>
-            <h2 className="font-bold text-lg">Release Timing</h2>
-            <p className="text-gray-300">Data-driven insights for optimal release dates</p>
-          </div>
-        </div>
-      </div>
-
-      {/* AI Lyrics Assistant */}
-      <div className="flex flex-col gap-4 w-full sm:w-2/3 p-6 border border-gray-600 rounded-xl mb-6">
-        <p className="font-semibold text-white">Try AI Lyrics Assistant</p>
-        <input
-          type="text"
-          placeholder="Describe your song theme"
-          className="p-2 rounded border border-gray-500 bg-black/20 text-white focus:outline-none focus:border-primary"
-        />
-        <GradientButton title="Generate Lyrics" />
-      </div>
-
-      {/* Link to AI Beat Maker */}
-      <Link to="/AIBeatMaker">
-        <Button title="Learn More About AI Tools" className="hover:bg-primary"/>
-      </Link>
+        {/* Link to AI Beat Maker */}
+        <Link to="/AIBeatMaker">
+          <Button
+            title="Learn More About AI Tools"
+            className="hover:bg-primary"
+          />
+        </Link>
       </section>
     </main>
   );

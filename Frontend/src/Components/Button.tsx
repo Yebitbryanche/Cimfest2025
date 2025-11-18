@@ -1,4 +1,4 @@
-import React from "react";
+
 import type { ReactNode } from "react";
 
 export interface ButtonProps {
@@ -14,7 +14,6 @@ function Button({  children, className = "", onClick }: ButtonProps) {
       onClick={onClick}
       className={`flex items-center justify-center gap-2 h-10 px-4 py-2 rounded-md font-medium cursor-pointer bg-[#1F1F25] text-white hover:bg-[#2A2A32] ${className}`}
     >
-      
       {children} 
     </button>
   );

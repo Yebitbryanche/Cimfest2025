@@ -25,8 +25,8 @@ function Navigation() {
           <Link to="/profile">Profile</Link>
         </ul>
         <div className="md:flex md:gap-x-3 hidden">
-          <DarkButton title="Sign In" />
-          <GradientButton className="bg-primary_gradient" title="Get Started" />
+          <DarkButton title="Sign In"  onClick={() => navigate("/auth/signin")} />
+          <GradientButton className="bg-primary_gradient" title="Get Started"  onClick={() => navigate("/auth/signup")}/>
         </div>
         <div className="md:hidden block">
           <IoIosMenu
@@ -60,7 +60,7 @@ function Navigation() {
               className="bg-primary_gradient"
               title="Get Started"
               onClick={() => navigate("/auth/signup")}
-            />
+            ></GradientButton>
           </div>
         </div>
       )}
