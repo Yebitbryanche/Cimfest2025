@@ -11,7 +11,6 @@ export const base_URL = "http://127.0.0.1:8000"
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [comfirmpass, setComfirmpass] = useState("")
   const [user_name,setUser_name] = useState("");
   const [password,setPassword] = useState("")
   const [phone, setphone] = useState("")
@@ -38,7 +37,7 @@ const SignUp = () => {
       setRole(false)
 
       setTimeout(() => {
-        navigate("/auth/login")
+        navigate("/auth/signin")
       },2000);
     }
     catch(err:any){
