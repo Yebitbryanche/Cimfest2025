@@ -6,10 +6,15 @@ import { GiMusicalScore, GiProgression, GiTakeMyMoney } from "react-icons/gi";
 import { IoMusicalNotesOutline } from "react-icons/io5";
 import { FaPersonHarassing } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import ProfessionalismChecklist from "../../Components/ProfessionalismChecklist";
+import AIInsights from "../../Components/AIInsights";
+import AudienceGeoDistribution from "../../Components/AudienceGeoDistribution";
+import RevenueBreakdown from "../../Components/RevenueBreakdown";
 
 function Dashboard() {
   return (
     <div className="bg-tertiary text-white min-h-screen py-12 px-32">
+      
       {/* Welcome */}
       <div className="mb-8">
         <h1 className="font-bold text-5xl">
@@ -20,23 +25,23 @@ function Dashboard() {
         </p>
       </div>
 
-      {/* Quick actions */}
+      {/* Quick Actions */}
       <div className="flex w-full gap-4 mb-8">
         <Link
           to="/UploadBeats"
           className="flex-1 border border-gray-500 p-5 flex items-center gap-3 
-    hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-    transition-colors rounded-lg cursor-pointer"
+                     hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
+                     transition-colors rounded-lg cursor-pointer"
         >
           <FiDownload className="text-2xl" />
           <p>Upload Beats</p>
         </Link>
 
         <Link
-          to="/AIBeatMaker"
+          to="/aitools"
           className="flex-1 border border-gray-500 p-5 flex items-center gap-3 
-    hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-    transition-colors rounded-lg cursor-pointer"
+                     hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
+                     transition-colors rounded-lg cursor-pointer"
         >
           <IoMdStarOutline className="text-2xl" />
           <p>AI Beats Maker</p>
@@ -45,14 +50,15 @@ function Dashboard() {
         <Link
           to="/CreateSong"
           className="flex-1 border border-gray-500 p-5 flex items-center gap-3 
-    hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-    transition-colors rounded-lg cursor-pointer"
+                     hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
+                     transition-colors rounded-lg cursor-pointer"
         >
           <IoIosMusicalNotes className="text-2xl" />
           <p>Create Song</p>
         </Link>
       </div>
 
+      {/* BeatStats */}
       <div className="flex w-full gap-4 mb-8">
         <BeatStats
           image={<IoMusicalNotesOutline size={28} />}
@@ -80,8 +86,20 @@ function Dashboard() {
         />
       </div>
 
+    {/* Full-width Revenue Breakdown */}
+      <RevenueBreakdown />
+
+
+      {/* Professionalism Checklist + AI Insights + Audience Geo-Distribution */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+        <ProfessionalismChecklist />
+        <AIInsights />
+        <AudienceGeoDistribution />
+      </div>
+
       {/* Recent Activity & Top Performing Beats */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        
         {/* Recent Activity */}
         <div className="bg-black/30 p-6 rounded-lg">
           <h2 className="text-2xl font-bold mb-2">Recent Activity</h2>
@@ -122,6 +140,7 @@ function Dashboard() {
           ))}
         </div>
       </div>
+
     </div>
   );
 }
