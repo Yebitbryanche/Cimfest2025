@@ -31,7 +31,7 @@ def get_user_by_email(session: SessionDep, email: str) -> Optional[User]:
 def authenticate_user(session: SessionDep, email: str, password: str):
     user = get_user_by_email(session, email)
     if not user or not user.check_password(password):
-        return False
+        return None
     return user
 
 
@@ -46,7 +46,7 @@ async def get_current_user(
     )
 
     try:
-        payload = jwt.decode(token, settings.SECRET, algorithms=[settings.ALGORITHM])
+        payload = jwt.decode(token, settings.SECRETE, algorithms=[settings.ALGORITHM])
         email: str = payload.get("sub")
         if email is None:
             raise credentials_exception
