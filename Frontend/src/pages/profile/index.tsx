@@ -10,17 +10,28 @@ export default function ArtistProfilePage() {
   const [activeTab, setActiveTab] = useState("Beats");
 
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white px-6 py-12">
+    <div className="min-h-screen bg-[#0d0d0d] text-white px-4 sm:px-6 lg:px-12 py-10 mt-7">
       <ArtistHeader />
 
-      {/* TABS */}
-      <TabsSwitcher activeTab={activeTab} setActiveTab={setActiveTab} />
+      {/* Tabs */}
+      <div className="mt-6 sm:mt-8">
+        <TabsSwitcher activeTab={activeTab} setActiveTab={setActiveTab} />
+      </div>
 
       {/* CONTENT */}
-      <div className="mt-10">
+      <div className="mt-8 sm:mt-10">
+        
         {/* BEATS TAB */}
         {activeTab === "Beats" && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="
+            grid 
+            grid-cols-1 
+            sm:grid-cols-2 
+            lg:grid-cols-3 
+            gap-6 
+            sm:gap-8 
+            lg:gap-10
+          ">
             <BeatsCard
               image={images.beat3}
               title="Summer Vibes"
@@ -44,7 +55,7 @@ export default function ArtistProfilePage() {
 
         {/* SONGS TAB */}
         {activeTab === "Songs" && (
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4 sm:gap-5">
             <SongListItem title="Midnight Dreams" plays="5,234" likes="432" />
             <SongListItem title="City Lights" plays="3,891" likes="298" />
             <SongListItem title="Summer Vibes" plays="2,156" likes="187" />
@@ -53,7 +64,7 @@ export default function ArtistProfilePage() {
 
         {/* COLLABORATIONS TAB */}
         {activeTab === "Collaborations" && (
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-4 sm:gap-5">
             <CollaborationCard
               title="Drill Anthem"
               artists="You ft. Big Wave"

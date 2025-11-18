@@ -13,7 +13,7 @@ export default function CollaborationCard({ title, artists, plays }: Collaborati
 
       {/* LEFT */}
       <div className="flex items-center gap-4">
-        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-400 to-blue-500 flex items-center justify-center text-white text-xl">
+        <div className="w-14 h-14 rounded-xl bg-linear-to-br from-purple-400 to-blue-500 flex items-center justify-center text-white text-xl">
           <FiUsers />
         </div>
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import images from "../types/images";
 import { GradientButton } from "../Components/GradientButton";
 import { IoEyeOff, IoEye } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { base_URL } from "./SignUp";
 
@@ -14,7 +14,6 @@ const SignIn = () => {
   const [emailError, setEmailError] = useState("");
   const navigate = useNavigate();
 
-  // Email validation function
   const validateEmail = (value: string) => {
     setEmail(value);
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -63,7 +62,7 @@ const SignIn = () => {
           <p className="text-gray-500 mt-2">Sign in to your Mutumbu account</p>
         </div>
 
-        {/* Email Input */}
+        {/* Email */}
         <div className="flex flex-col mb-4">
           <label htmlFor="email" className="mb-2 font-medium text-white">
             Email
@@ -78,24 +77,27 @@ const SignIn = () => {
               ${emailError ? "border-red-500 focus:ring-red-500" : "border-gray-600 focus:ring-purple-500"}
             `}
           />
-          {emailError && <p className="text-red-500 text-sm mt-1">{emailError}</p>}
+          {emailError && (
+            <p className="text-red-500 text-sm mt-1">{emailError}</p>
+          )}
         </div>
 
-        {/* Password Input */}
+        {/* Password */}
         <div className="flex flex-col mb-6 relative">
           <label htmlFor="password" className="mb-2 font-medium text-white">
             Password
           </label>
+
           <input
             id="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             type={showPassword ? "text" : "password"}
             placeholder="Enter your password"
-            className="border placeholder:text-gray-400 border-gray-600 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 pr-12"
+            className="border placeholder:text-gray-400 border-gray-600 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 pr-12 w-full"
           />
 
-          {/* Toggle Eye Icon */}
+          {/* Toggle Visibility */}
           <span
             onClick={() => setShowPassword(!showPassword)}
             className="absolute right-3 top-11 cursor-pointer text-gray-400 hover:text-white"
@@ -104,15 +106,17 @@ const SignIn = () => {
           </span>
         </div>
 
-        {/* Sign In Button */}
+        {/* Button */}
         <GradientButton className="w-full" title="Sign In" />
 
-        {/* Sign up Link */}
-        <p className="mt-4 text-center text-gray-500">
+        {/* Sign Up Link */}
+        <p className="mt-4 text-center text-gray-400 text-sm sm:text-base">
           Don't have an account?{" "}
-          <span className="text-purple-600 cursor-pointer hover:underline">
-            Sign up
-          </span>
+          <Link to="/auth/signin">
+            <span className="text-purple-500 cursor-pointer hover:underline">
+              Sign In
+            </span>
+          </Link>
         </p>
       </form>
     </div>

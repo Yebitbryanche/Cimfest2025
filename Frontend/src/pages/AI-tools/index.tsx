@@ -1,142 +1,100 @@
-import React, { useState } from "react";
-// Import the new third panel component
-import DisabledPLPs from "../../Components/DisabledPLPs"; // Assuming DisabledPLPs is in the same directory or accessible via this path
-
-// Removed: import PreviewCard from "../../Components/Previewcard"; 
-// The preview is now inside BeatMakerLeftPanel and LyricsMakerLeftPanel
-import BeatMakerLeftPanel from "../../Components/BeatMakerPanel";
-import LyricsMakerLeftPanel from "../../Components/LyricsMakerPanel";
-
-type ActiveTab = "beat" | "lyrics" | "beatsense"; // Updated type for new tab
+import { useState } from "react";
+import PreviewCard from "../../Components/Previewcard";
+import BeatMakerLeftPanel from "../../Components/BeatMakerLeftPanel";
+import LyricsMakerLeftPanel from "../../Components/LyricsMakerLeftPanel";
 
 export default function AIMakerPage() {
-  const [activeTab, setActiveTab] = useState<ActiveTab>("beat");
+  const [activeTab, setActiveTab] = useState<"beat" | "lyrics">("beat");
 
-  // Beat states
-  const [description, setDescription] = useState("");
-  const [genre, setGenre] = useState("Trap");
-  const [mood, setMood] = useState("Dark");
-  const [bpm, setBpm] = useState(140);
-  const [energy, setEnergy] = useState(70);
+  // Beat states
+  const [description, setDescription] = useState("");
+  const [genre, setGenre] = useState("Trap");
+  const [mood, setMood] = useState("Dark");
+  const [bpm, setBpm] = useState(140);
+  const [energy, setEnergy] = useState(70);
 
-  // Lyrics states
-  const [topic, setTopic] = useState("");
-  const [style, setStyle] = useState("Trap");
-  const [length, setLength] = useState("Medium (16 bars)");
-  // In a real app, setGeneratedLyrics would be called after an API response
-  const [generatedLyrics, setGeneratedLyrics] = useState<string | undefined>(undefined); 
+  // Lyrics states
+  const [topic, setTopic] = useState("");
+  const [style, setStyle] = useState("Trap");
+  const [length, setLength] = useState("Medium (16 bars)");
+  const [generatedLyrics] = useState<string | undefined>(undefined);
 
-  // Dummy generation functions for demonstration
-  const handleGenerateBeat = () => {
-    console.log("Generating Beat with params:", { description, genre, mood, bpm, energy });
-    // In a real app, you would fetch the beat and update a beat state
-  };
+  return (
+    <div className="w-full min-h-screen bg-[#0d0d0d] text-white px-4 py-20">
 
-  const handleGenerateLyrics = () => {
-    console.log("Generating Lyrics with params:", { topic, style, length });
-    // Dummy result for preview
-    setGeneratedLyrics(`
-(Verse 1)
-Rolling through the city, late night chill
-Topic's heavy, got a story to fulfill
-Heartbeat's knocking like a trap drum drill
-16 bars deep, yeah, I write what I feel.
+      {/* Title */}
+      <div className="text-center mb-16">
+        <h1 className="text-4xl md:text-5xl font-bold mt-4">
+          AI <span className="text-purple-400">Creator</span>
+        </h1>
 
-(Chorus)
-Purple skies, neon light in the rain
-AI wrote this rhythm, easing the pain
-From the dark side, yeah, we rise again
-This is the new sound, nothing stays the same.
-    `);
-  };
+        <p className="text-gray-400 mt-3">
+          Create beats or generate lyrics using AI
+        </p>
 
-  // Helper function for tab button styling
-  const getTabClass = (tabName: ActiveTab) => 
-    `px-6 py-2 rounded-xl transition ${
-      tabName === activeTab
-        ? "bg-purple-600 text-white"
-        : "bg-[#1c1c1c] text-gray-400"
-    }`;
+        {/* Tabs */}
+        <div className="mt-8 flex justify-center gap-4">
+          <button
+            className={`px-6 py-2 rounded-xl transition ${
+              activeTab === "beat"
+                ? "bg-purple-600 text-white"
+                : "bg-[#1c1c1c] text-gray-400"
+            }`}
+            onClick={() => setActiveTab("beat")}
+          >
+            Beat Maker
+          </button>
 
-  return (
-    <div className="w-full min-h-screen bg-[#0d0d0d] text-white px-4 py-20">
+          <button
+            className={`px-6 py-2 rounded-xl transition ${
+              activeTab === "lyrics"
+                ? "bg-purple-600 text-white"
+                : "bg-[#1c1c1c] text-gray-400"
+            }`}
+            onClick={() => setActiveTab("lyrics")}
+          >
+            Lyrics Writer
+          </button>
+        </div>
+      </div>
 
-      {/* Title and Tabs */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold mt-4">
-          AI <span className="text-purple-400">Creator</span> 🎧
-        </h1>
+      {/* Panels */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10">
+        
+        {activeTab === "beat" ? (
+          <BeatMakerLeftPanel
+            description={description}
+            setDescription={setDescription}
+            genre={genre}
+            setGenre={setGenre}
+            mood={mood}
+            setMood={setMood}
+            bpm={bpm}
+            setBpm={setBpm}
+            energy={energy}
+            setEnergy={setEnergy}
+            onGenerate={() => console.log("Generate Beat")}
+          />
+        ) : (
+          <LyricsMakerLeftPanel
+            topic={topic}
+            setTopic={setTopic}
+            style={style}
+            setStyle={setStyle}
+            length={length}
+            setLength={setLength}
+            onGenerateLyrics={() => console.log("Generate Lyrics")}
+          />
+        )}
 
-        <p className="text-gray-400 mt-3">
-          Create beats or generate lyrics using AI
-        </p>
+        <PreviewCard
+  mode={activeTab} // "beat" or "lyrics"
+  onPlay={() => console.log("Play")}
+  onDownload={() => console.log("Download")}
+  lyricsText={activeTab === "lyrics" ? generatedLyrics : undefined}
+/>
+      </div>
 
-        {/* Tabs */}
-        <div className="mt-8 flex justify-center gap-4 flex-wrap">
-          <button
-            className={getTabClass("beat")}
-            onClick={() => setActiveTab("beat")}
-          >
-            Beat Maker
-          </button>
-
-          <button
-            className={getTabClass("lyrics")}
-            onClick={() => setActiveTab("lyrics")}
-          >
-            Lyrics Writer
-          </button>
-
-          <button
-            className={getTabClass("beatsense")}
-            onClick={() => setActiveTab("beatsense")}
-          >
-            Beat Sense
-          </button>
-        </div>
-      </div>
-
-      {/* Panels */}
-      <div className="max-w-7xl mx-auto">
-        
-        {activeTab === "beat" && (
-          <BeatMakerLeftPanel
-            description={description}
-            setDescription={setDescription}
-            genre={genre}
-            setGenre={setGenre}
-            mood={mood}
-            setMood={setMood}
-            bpm={bpm}
-            setBpm={setBpm}
-            energy={energy}
-            setEnergy={setEnergy}
-            onGenerate={handleGenerateBeat}
-            // Add handlers for Play/Download since they were moved to the panel
-            onPlay={() => console.log("Play Beat from AIMakerPage")}
-            onDownload={() => console.log("Download Beat from AIMakerPage")}
-          />
-        )}
-        
-        {activeTab === "lyrics" && (
-          <LyricsMakerLeftPanel
-            topic={topic}
-            setTopic={setTopic}
-            style={style}
-            setStyle={setStyle}
-            length={length}
-            setLength={setLength}
-            onGenerateLyrics={handleGenerateLyrics}
-            // Pass the generated lyrics state to the panel for display
-            lyricsText={generatedLyrics}
-          />
-        )}
-
-        {/* New Tab Content */}
-        {activeTab === "beatsense" && (
-          <DisabledPLPs />
-        )}
-      </div>
-    </div>
-  );
+    </div>
+  );
 }

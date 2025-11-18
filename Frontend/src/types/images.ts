@@ -14,6 +14,9 @@ import beat9 from "../assets/Images/Magasco Wallpaper.jpeg"
 import beat10 from "../assets/Images/_ (3).jpeg"
 import beat11 from "../assets/Images/_ (2).jpeg"
 import beat12 from "../assets/Images/by @cocaineart.jpeg"
+import beat13 from "../assets/Images/image1.jpeg"
+import beat14 from "../assets/Images/image2.jpeg"
+import beat15 from "../assets/Images/image3.jpeg"
 
 export default {
     logo,
@@ -24,5 +27,6 @@ export default {
     beat4, beat5, beat6,
     beat7, beat8, beat9,
     beat10, beat11, beat12,
+    beat13, beat14, beat15,
 
 }

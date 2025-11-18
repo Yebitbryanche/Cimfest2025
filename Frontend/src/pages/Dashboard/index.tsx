@@ -13,25 +13,34 @@ import RevenueBreakdown from "../../Components/RevenueBreakdown";
 
 function Dashboard() {
   return (
-    <div className="bg-tertiary text-white min-h-screen py-12 px-32">
+    <div className="
+      bg-tertiary text-white min-h-screen 
+      px-4 sm:px-6 lg:px-16 xl:px-32 
+      py-10 sm:py-12 mt-12
+    ">
       
       {/* Welcome */}
       <div className="mb-8">
-        <h1 className="font-bold text-5xl">
+        <h1 className="font-bold text-3xl sm:text-4xl lg:text-5xl">
           Welcome back, <span className="text-primary">Artist</span>
         </h1>
-        <p className="text-gray-400 pt-2">
+        <p className="text-gray-400 pt-2 text-sm sm:text-base">
           Here's what's happening with your music
         </p>
       </div>
 
       {/* Quick Actions */}
-      <div className="flex w-full gap-4 mb-8">
+      <div className="
+        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
+        gap-4 mb-8
+      ">
         <Link
           to="/UploadBeats"
-          className="flex-1 border border-gray-500 p-5 flex items-center gap-3 
-                     hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-                     transition-colors rounded-lg cursor-pointer"
+          className="
+            border border-gray-500 p-5 flex items-center gap-3 
+            hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
+            transition-colors rounded-lg cursor-pointer
+          "
         >
           <FiDownload className="text-2xl" />
           <p>Upload Beats</p>
@@ -39,9 +48,11 @@ function Dashboard() {
 
         <Link
           to="/aitools"
-          className="flex-1 border border-gray-500 p-5 flex items-center gap-3 
-                     hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-                     transition-colors rounded-lg cursor-pointer"
+          className="
+            border border-gray-500 p-5 flex items-center gap-3 
+            hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
+            transition-colors rounded-lg cursor-pointer
+          "
         >
           <IoMdStarOutline className="text-2xl" />
           <p>AI Beats Maker</p>
@@ -49,17 +60,22 @@ function Dashboard() {
 
         <Link
           to="/CreateSong"
-          className="flex-1 border border-gray-500 p-5 flex items-center gap-3 
-                     hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-                     transition-colors rounded-lg cursor-pointer"
+          className="
+            border border-gray-500 p-5 flex items-center gap-3 
+            hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
+            transition-colors rounded-lg cursor-pointer
+          "
         >
           <IoIosMusicalNotes className="text-2xl" />
           <p>Create Song</p>
         </Link>
       </div>
 
-      {/* BeatStats */}
-      <div className="flex w-full gap-4 mb-8">
+      {/* Beat Stats */}
+      <div className="
+        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 
+        gap-4 mb-10
+      ">
         <BeatStats
           image={<IoMusicalNotesOutline size={28} />}
           num={12}
@@ -86,20 +102,26 @@ function Dashboard() {
         />
       </div>
 
-    {/* Full-width Revenue Breakdown */}
-      <RevenueBreakdown />
+      {/* Full-width Revenue Breakdown */}
+      <div className="mb-10">
+        <RevenueBreakdown />
+      </div>
 
-
-      {/* Professionalism Checklist + AI Insights + Audience Geo-Distribution */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+      {/* Pro Checklist + AI + Audience */}
+      <div className="
+        grid grid-cols-1 lg:grid-cols-3 
+        gap-6 mb-10
+      ">
         <ProfessionalismChecklist />
         <AIInsights />
         <AudienceGeoDistribution />
       </div>
 
-      {/* Recent Activity & Top Performing Beats */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
+      {/* Recent Activity + Top Beats */}
+      <div className="
+        grid grid-cols-1 lg:grid-cols-2 
+        gap-8
+      ">
         {/* Recent Activity */}
         <div className="bg-black/30 p-6 rounded-lg">
           <h2 className="text-2xl font-bold mb-2">Recent Activity</h2>
@@ -140,7 +162,6 @@ function Dashboard() {
           ))}
         </div>
       </div>
-
     </div>
   );
 }

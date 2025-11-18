@@ -1,4 +1,4 @@
-import React from "react";
+
 import { DarkButton } from "./DarkButton";
 import images from "../types/images";
 
@@ -28,7 +28,7 @@ export default function PreviewCard({ mode, onPlay, onDownload, lyricsText }: Pr
       {/* Preview Container */}
       {mode === "beat" ? (
         <div
-          className="w-full h-56 rounded-xl bg-gradient-to-br 
+          className="w-full h-56 rounded-xl bg-linear-to-br 
           from-purple-500/70 to-pink-500/70 backdrop-blur-md 
           flex items-center justify-center border border-white/10"
         >
