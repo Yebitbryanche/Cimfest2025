@@ -126,7 +126,7 @@ const AIBeatMaker = () => {
                   flex items-center justify-center text-white text-4xl opacity-90">
                 <IoSparkles />
               </div>
-
+    q
               {/* Buttons */}
               <div className="mt-6 grid grid-cols-2 gap-3">
                 <button className="py-3 bg-gray-800 border border-gray-600 rounded-lg flex items-center justify-center gap-2">

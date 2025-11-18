@@ -1,6 +1,7 @@
 import React from "react";
 import { DarkButton } from "./DarkButton";
 import images from "../types/images";
+
 interface Props {
   onPlay: () => void;
   onDownload: () => void;
@@ -8,35 +9,68 @@ interface Props {
 
 export default function PreviewCard({ onPlay, onDownload }: Props) {
   return (
-    <div className="bg-[#151515] rounded-2xl p-6 w-full flex flex-col items-center">
-      <h3 className="text-lg font-semibold mb-3 text-white">Preview</h3>
-      <p className="text-sm text-gray-400 mb-4">Your generated beat will appear here</p>
+    <div className="bg-[#151515] border border-gray-700 p-6 rounded-2xl shadow-lg space-y-6">
 
-      <div className="w-full h-56 rounded-xl bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center">
-        <span className="text-white text-4xl opacity-80">
-            <img src={images.sparkel} alt="sparkel"  className="w-20 h-20 filter brightness-0 invert"/>
-        </span>
+      {/* Title */}
+      <div>
+        <h3 className="text-lg font-semibold text-white">Preview</h3>
+        <p className="text-sm text-gray-400">
+          Your generated beat will appear here
+        </p>
       </div>
 
-      <div className="w-full mt-6 space-y-3 flex flex-col">
-     <DarkButton  title="Play Preview" onClick={onPlay} 
-            className="flex items-center opacity-50 gap-3 w-full px-5 py-3 
-               rounded-xl border border-gray-700 
-               text-gray-300 bg-[#1a1a1a] 
-               hover:bg-[#222222] transition">
-          <img src={images.play} alt="play" className="w-4 h-4" />
-          <span>Play Preview</span>
-            
-         </DarkButton>
+      {/* Preview Container */}
+      <div
+        className="w-full h-56 rounded-xl bg-gradient-to-br 
+        from-purple-500/70 to-pink-500/70 backdrop-blur-md 
+        flex items-center justify-center border border-white/10"
+      >
+        <img
+          src={images.sparkel}
+          alt="sparkel"
+          className="w-20 h-20 opacity-90 invert"
+        />
+      </div>
 
-        <DarkButton title="Download" onClick={onDownload}   
-                className="flex items-center  opacity-50  gap-3 w-full px-5 py-3 
-               rounded-xl border border-gray-700 
-               text-gray-300 bg-[#1a1a1a] 
-               hover:bg-[#222222] transition" >
-          <img src={images.download} alt="download" className="w-4 h-4" />
+      {/* Buttons */}
+      <div className="flex flex-col gap-3 mt-4">
+
+        <DarkButton
+          title="Play Preview"
+          onClick={onPlay}
+          className="flex items-center gap-3 w-full px-5 py-3 
+          rounded-xl border border-gray-700 
+          text-gray-200 bg-[#1a1a1a] 
+          hover:bg-[#222222] hover:border-gray-600 transition"
+        >
+          <img src={images.play} alt="play" className="w-4 h-4 opacity-90" />
+          <span>Play Preview</span>
+        </DarkButton>
+
+        <DarkButton
+          title="Download"
+          onClick={onDownload}
+          className="flex items-center gap-3 w-full px-5 py-3 
+          rounded-xl border border-gray-700 
+          text-gray-200 bg-[#1a1a1a] 
+          hover:bg-[#222222] hover:border-gray-600 transition"
+        >
+          <img src={images.download} alt="download" className="w-4 h-4 opacity-90" />
           <span>Download</span>
-          </DarkButton>
+        </DarkButton>
+      </div>
+
+      {/* Tips Box */}
+      <div className="bg-[#0f0f0f] border border-gray-700 p-5 rounded-xl">
+        <h2 className="text-lg font-semibold text-white mb-3">Tips</h2>
+
+        <ul className="text-gray-400 space-y-2 text-sm leading-relaxed">
+          <li>• Be specific about instruments and sounds</li>
+          <li>• Mention mood and energy level</li>
+          <li>• Reference similar artists or beats</li>
+          <li>• Include tempo and rhythm details</li>
+          <li>• Experiment with different prompts</li>
+        </ul>
       </div>
     </div>
   );
