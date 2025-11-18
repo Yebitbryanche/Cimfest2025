@@ -11,6 +11,8 @@ import SignUp from "./Auth/SignUp"
 import UploadBeats from "./pages/UploadBeats.tsx"
 import AIBeatMaker from "./pages/AIBeatMaker/index.tsx"
 import CreateSong from "./pages/CreateSong/index.tsx"
+import BeatDetailsPage from "./pages/BeatDetailsPage/index.tsx"
+import ScrollToTopButton from "./Components/ScrollToTopButton.tsx"
 
 function App() {
   return (
@@ -25,9 +27,12 @@ function App() {
     <Route path="/uploadbeats" element={<UploadBeats/>}/>
     <Route path="/aibeatmaker" element={<AIBeatMaker/>}/>
     <Route path="/createsong" element={<CreateSong/>}/>
+    <Route path="/beat/:id" element={<BeatDetailsPage/>}/>
     <Route path="/auth/signin" element={<SignIn/>}/>
     <Route path="/auth/signup" element={<SignUp/>}/>
    </Routes>
+   <ScrollToTopButton />
+
    <Footer/>
    </BrowserRouter>
   )

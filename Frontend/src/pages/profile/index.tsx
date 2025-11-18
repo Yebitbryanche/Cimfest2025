@@ -10,7 +10,7 @@ export default function ArtistProfilePage() {
   const [activeTab, setActiveTab] = useState("Beats");
 
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white px-4 sm:px-6 lg:px-12 py-10 mt-7">
+    <div className="min-h-screen bg-tertiary text-white px-4 sm:px-6 lg:px-12 py-10 mt-7">
       <ArtistHeader />
 
       {/* Tabs */}
