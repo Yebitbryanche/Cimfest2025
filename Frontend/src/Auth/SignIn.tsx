@@ -1,12 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import images from "../types/images";
 import { GradientButton } from "../Components/GradientButton";
 import { IoEyeOff, IoEye } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { base_URL } from "./SignUp";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
+
+  const [password, setPassword] = useState("")
   const [emailError, setEmailError] = useState("");
+  const navigate = useNavigate();
 
   // Email validation function
   const validateEmail = (value: string) => {
@@ -22,9 +28,33 @@ const SignIn = () => {
     }
   };
 
+  const handleLogin = async (e: React.FormEvent) =>{
+    e.preventDefault();
+    try{
+    const response = await axios.post(`${base_URL}/login`,{
+      email,
+      password,
+    })
+    localStorage.setItem("token",response.data.access_token)
+    console.log(response.data)
+    setEmail("")
+    setPassword("")
+    console.log({email})
+    validateEmail(email)
+
+    setTimeout(()=>{
+        navigate("/dashboard")
+    },2000)
+  }
+  catch(err:any){
+   console.log(err)
+  }
+  }
+  
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-tertiary">
-      <div className="bg-black/50 text-white p-8 rounded-xl shadow-xl w-full max-w-lg">
+      <form onSubmit={handleLogin} className="bg-black/50 text-white p-8 rounded-xl shadow-xl w-full max-w-lg">
         
         {/* Logo and Heading */}
         <div className="flex flex-col items-center mb-8">
@@ -43,7 +73,7 @@ const SignIn = () => {
             type="text"
             placeholder="you@example.com"
             value={email}
-            onChange={(e) => validateEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             className={`border p-3 rounded-md placeholder:text-gray-400 focus:outline-none focus:ring-2 
               ${emailError ? "border-red-500 focus:ring-red-500" : "border-gray-600 focus:ring-purple-500"}
             `}
@@ -58,6 +88,8 @@ const SignIn = () => {
           </label>
           <input
             id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             type={showPassword ? "text" : "password"}
             placeholder="Enter your password"
             className="border placeholder:text-gray-400 border-gray-600 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 pr-12"
@@ -82,7 +114,7 @@ const SignIn = () => {
             Sign up
           </span>
         </p>
-      </div>
+      </form>
     </div>
   );
 };
