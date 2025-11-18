@@ -5,6 +5,12 @@ import Dashboard from "./pages/Dashboard"
 import Marketplace from "./pages/Marketplce"
 import Profile from "./pages/profile"
 import Navigation from "./Containers/Navigation"
+import Footer from "./Containers/Footer"
+import SignIn from "./Auth/SignIn"
+import SignUp from "./Auth/SignUp"
+import UploadBeats from "./pages/UploadBeats.tsx"
+import AIBeatMaker from "./pages/AIBeatMaker/index.tsx"
+import CreateSong from "./pages/CreateSong/index.tsx"
 
 function App() {
   return (
@@ -16,7 +22,13 @@ function App() {
     <Route path="/dashboard" element={<Dashboard/>}/>
     <Route path="/aitools" element={<Ai_tools/>}/>
     <Route path="/profile" element={<Profile/>}/>
+    <Route path="/uploadbeats" element={<UploadBeats/>}/>
+    <Route path="/aibeatmaker" element={<AIBeatMaker/>}/>
+    <Route path="/createsong" element={<CreateSong/>}/>
+    <Route path="/auth/signin" element={<SignIn/>}/>
+    <Route path="/auth/signup" element={<SignUp/>}/>
    </Routes>
+   <Footer/>
    </BrowserRouter>
   )
 }
