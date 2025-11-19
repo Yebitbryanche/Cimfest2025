@@ -5,6 +5,7 @@ This project is designed for the purpose of the cimfest hackathon 2025 at Mounta
 move to the frontend directory and type the following
 1 npm install -- to install all node modules
 2 npm run dev -- to open server
+3 https://cimfest2025-qk8k.vercel.app/ hosted app
 
 # backend
 move to backend directory and do the following in the terminal
