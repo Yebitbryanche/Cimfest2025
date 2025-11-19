@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { FiDownload } from "react-icons/fi";
 import { IoIosMusicalNotes, IoMdStarOutline } from "react-icons/io";
 import BeatStats from "../../Components/BeatStats";
@@ -10,14 +11,20 @@ import ProfessionalismChecklist from "../../Components/ProfessionalismChecklist"
 import AIInsights from "../../Components/AIInsights";
 import AudienceGeoDistribution from "../../Components/AudienceGeoDistribution";
 import RevenueBreakdown from "../../Components/RevenueBreakdown";
+import MusicWaveLoader from "../../Components/MusicWaveLoader";
 
 function Dashboard() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // 1 second loader
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <MusicWaveLoader />;
+
   return (
-    <div className="
-      bg-tertiary text-white min-h-screen 
-      px-4 sm:px-6 lg:px-16 xl:px-32 
-      py-10 sm:py-12 mt-12
-    ">
+    <div className="bg-tertiary text-white min-h-screen px-4 sm:px-6 lg:px-16 xl:px-32 py-10 sm:py-12 mt-12">
       
       {/* Welcome */}
       <div className="mb-8">
@@ -30,17 +37,10 @@ function Dashboard() {
       </div>
 
       {/* Quick Actions */}
-      <div className="
-        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 
-        gap-4 mb-8
-      ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         <Link
           to="/UploadBeats"
-          className="
-            border border-gray-500 p-5 flex items-center gap-3 
-            hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-            transition-colors rounded-lg cursor-pointer
-          "
+          className="border border-gray-500 p-5 flex items-center gap-3 hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 transition-colors rounded-lg cursor-pointer"
         >
           <FiDownload className="text-2xl" />
           <p>Upload Beats</p>
@@ -48,11 +48,7 @@ function Dashboard() {
 
         <Link
           to="/aitools"
-          className="
-            border border-gray-500 p-5 flex items-center gap-3 
-            hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-            transition-colors rounded-lg cursor-pointer
-          "
+          className="border border-gray-500 p-5 flex items-center gap-3 hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 transition-colors rounded-lg cursor-pointer"
         >
           <IoMdStarOutline className="text-2xl" />
           <p>AI Beats Maker</p>
@@ -60,11 +56,7 @@ function Dashboard() {
 
         <Link
           to="/CreateSong"
-          className="
-            border border-gray-500 p-5 flex items-center gap-3 
-            hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-            transition-colors rounded-lg cursor-pointer
-          "
+          className="border border-gray-500 p-5 flex items-center gap-3 hover:bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 transition-colors rounded-lg cursor-pointer"
         >
           <IoIosMusicalNotes className="text-2xl" />
           <p>Create Song</p>
@@ -72,34 +64,11 @@ function Dashboard() {
       </div>
 
       {/* Beat Stats */}
-      <div className="
-        grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 
-        gap-4 mb-10
-      ">
-        <BeatStats
-          image={<IoMusicalNotesOutline size={28} />}
-          num={12}
-          text="Total Beats"
-          subtitle="+3 this month"
-        />
-        <BeatStats
-          image={<GiMusicalScore size={28} />}
-          num={8}
-          text="Total Songs"
-          subtitle="+2 this week"
-        />
-        <BeatStats
-          image={<FaPersonHarassing size={28} />}
-          num={5}
-          text="Collaborations"
-          subtitle="2 active"
-        />
-        <BeatStats
-          image={<GiTakeMyMoney size={28} />}
-          num={1234}
-          text="Earnings"
-          subtitle="+$230 this month"
-        />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        <BeatStats image={<IoMusicalNotesOutline size={28} />} num={12} text="Total Beats" subtitle="+3 this month" />
+        <BeatStats image={<GiMusicalScore size={28} />} num={8} text="Total Songs" subtitle="+2 this week" />
+        <BeatStats image={<FaPersonHarassing size={28} />} num={5} text="Collaborations" subtitle="2 active" />
+        <BeatStats image={<GiTakeMyMoney size={28} />} num={1234} text="Earnings" subtitle="+$230 this month" />
       </div>
 
       {/* Full-width Revenue Breakdown */}
@@ -108,20 +77,14 @@ function Dashboard() {
       </div>
 
       {/* Pro Checklist + AI + Audience */}
-      <div className="
-        grid grid-cols-1 lg:grid-cols-3 
-        gap-6 mb-10
-      ">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
         <ProfessionalismChecklist />
         <AIInsights />
         <AudienceGeoDistribution />
       </div>
 
       {/* Recent Activity + Top Beats */}
-      <div className="
-        grid grid-cols-1 lg:grid-cols-2 
-        gap-8
-      ">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Recent Activity */}
         <div className="bg-black/30 p-6 rounded-lg">
           <h2 className="text-2xl font-bold mb-2">Recent Activity</h2>

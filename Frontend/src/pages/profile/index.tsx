@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ArtistHeader from "../../Components/ArtistHeader";
 import TabsSwitcher from "../../Components/TabsSwitcher";
 import BeatsCard from "../../Components/BeatsCard";
 import SongListItem from "../../Components/SongListItem";
 import CollaborationCard from "../../Components/CollaborationCard";
+import MusicWaveLoader from "../../Components/MusicWaveLoader"; // import the loader
 import images from "../../types/images";
 
 export default function ArtistProfilePage() {
   const [activeTab, setActiveTab] = useState("Beats");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // 1 second loader
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <MusicWaveLoader />;
 
   return (
     <div className="min-h-screen bg-tertiary text-white px-4 sm:px-6 lg:px-12 py-10 mt-7">
@@ -20,18 +29,9 @@ export default function ArtistProfilePage() {
 
       {/* CONTENT */}
       <div className="mt-8 sm:mt-10">
-        
         {/* BEATS TAB */}
         {activeTab === "Beats" && (
-          <div className="
-            grid 
-            grid-cols-1 
-            sm:grid-cols-2 
-            lg:grid-cols-3 
-            gap-6 
-            sm:gap-8 
-            lg:gap-10
-          ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
             <BeatsCard
               image={images.beat3}
               title="Summer Vibes"
