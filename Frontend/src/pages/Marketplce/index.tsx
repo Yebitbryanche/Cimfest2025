@@ -2,14 +2,48 @@ import { FiSearch } from "react-icons/fi";
 import BeatsCard from "../../Components/BeatsCard";
 import { GradientButton } from "../../Components/GradientButton";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { beatData } from "../../utils/beatData";
 
+// Music-wave loader component
+function MusicWaveLoader() {
+  return (
+    <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
+      <div className="flex space-x-2">
+        {[...Array(5)].map((_, i) => (
+          <div
+            key={i}
+            className="w-2 h-6 bg-purple-600 rounded animate-wave"
+            style={{ animationDelay: `${i * 0.2}s` }}
+          />
+        ))}
+      </div>
+
+      <style jsx>{`
+        @keyframes wave {
+          0%, 100% { transform: scaleY(0.2); }
+          50% { transform: scaleY(1); }
+        }
+        .animate-wave {
+          animation: wave 1s infinite ease-in-out;
+        }
+      `}</style>
+    </div>
+  );
+}
+
 function Marketplace() {
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  // Simulate page loading
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000); // 2 seconds
+    return () => clearTimeout(timer);
+  }, []);
 
   // Navigate to beat details page
   const handleCardClick = (beatId: string) => {
@@ -24,8 +58,10 @@ function Marketplace() {
       beat.price.toLowerCase().includes(search.toLowerCase())
   );
 
+  if (loading) return <MusicWaveLoader />;
+
   return (
-     <div className="bg-tertiary text-white py-12 px-6 md:px-12 lg:px-32 mt-14">
+    <div className="bg-tertiary text-white py-12 px-6 md:px-12 lg:px-32 mt-14">
       {/* HEADER */}
       <div>
         <h1 className="font-bold text-4xl md:text-5xl">
@@ -41,7 +77,6 @@ function Marketplace() {
         {/* Search */}
         <div className="relative flex-1">
           <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-
           <input
             type="text"
             placeholder="Search beats, producers, genres..."
@@ -74,8 +109,7 @@ function Marketplace() {
               tabIndex={0}
               onClick={() => handleCardClick(beat.id)}
               onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ")
-                  handleCardClick(beat.id);
+                if (e.key === "Enter" || e.key === " ") handleCardClick(beat.id);
               }}
             >
               <BeatsCard {...beat} />

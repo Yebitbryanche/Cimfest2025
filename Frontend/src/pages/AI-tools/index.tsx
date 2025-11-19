@@ -1,27 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // Import the new third panel component
-import DisabledPLPs from "../../Components/DisabledPLPs"; // Assuming DisabledPLPs is in the same directory or accessible via this path
-
+import DisabledPLPs from "../../Components/DisabledPLPs";
 import BeatMakerLeftPanel from "../../Components/BeatMakerPanel";
 import LyricsMakerLeftPanel from "../../Components/LyricsMakerPanel";
+import MusicWaveLoader from "../../Components/MusicWaveLoader";
 
-type ActiveTab = "beat" | "lyrics" | "beatsense"; // Updated type for new tab
+type ActiveTab = "beat" | "lyrics" | "beatsense";
 
 export default function AIMakerPage() {
-  const [activeTab, setActiveTab] = useState<ActiveTab>("beat"); // Beat states
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<ActiveTab>("beat");
 
   const [description, setDescription] = useState("");
   const [genre, setGenre] = useState("Trap");
   const [mood, setMood] = useState("Dark");
   const [bpm, setBpm] = useState(140);
-  const [energy, setEnergy] = useState(70); // Lyrics states
+  const [energy, setEnergy] = useState(70);
 
   const [topic, setTopic] = useState("");
   const [style, setStyle] = useState("Trap");
-  const [length, setLength] = useState("Medium (16 bars)"); // In a real app, setGeneratedLyrics would be called after an API response
+  const [length, setLength] = useState("Medium (16 bars)");
   const [generatedLyrics, setGeneratedLyrics] = useState<string | undefined>(
     undefined
-  ); // Dummy generation functions for demonstration
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // 1 second loader
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <MusicWaveLoader />;
 
   const handleGenerateBeat = () => {
     console.log("Generating Beat with params:", {
@@ -30,13 +38,12 @@ export default function AIMakerPage() {
       mood,
       bpm,
       energy,
-    }); // In a real app, you would fetch the beat and update a beat state
+    });
   };
 
   const handleGenerateLyrics = () => {
-    console.log("Generating Lyrics with params:", { topic, style, length }); // Dummy result for preview
-    setGeneratedLyrics(`
-(Verse 1)
+    console.log("Generating Lyrics with params:", { topic, style, length });
+    setGeneratedLyrics(`(Verse 1)
 Rolling through the city, late night chill
 Topic's heavy, got a story to fulfill
 Heartbeat's knocking like a trap drum drill
@@ -47,8 +54,8 @@ Purple skies, neon light in the rain
 AI wrote this rhythm, easing the pain
 From the dark side, yeah, we rise again
 This is the new sound, nothing stays the same.
-    `);
-  }; // Helper function for tab button styling
+    `);
+  };
 
   const getTabClass = (tabName: ActiveTab) =>
     `px-6 py-2 rounded-xl transition ${
@@ -59,47 +66,38 @@ This is the new sound, nothing stays the same.
 
   return (
     <div className="w-full min-h-screen bg-[#0d0d0d] text-white px-4 py-20">
-            {/* Title and Tabs */}     {" "}
+      {/* Title and Tabs */}
       <div className="text-center mb-16">
-               {" "}
         <h1 className="text-4xl md:text-5xl font-bold mt-4">
-                    AI <span className="text-purple-400">Creator</span> 🎧      
-           {" "}
+          AI <span className="text-purple-400">Creator</span> 🎧
         </h1>
-               {" "}
         <p className="text-gray-400 mt-3">
-                    Create beats or generate lyrics using AI        {" "}
+          Create beats or generate lyrics using AI
         </p>
-                {/* Tabs */}       {" "}
         <div className="mt-8 flex justify-center gap-4 flex-wrap">
-                   {" "}
           <button
             className={getTabClass("beat")}
             onClick={() => setActiveTab("beat")}
           >
-                        Beat Maker          {" "}
+            Beat Maker
           </button>
-                   {" "}
           <button
             className={getTabClass("lyrics")}
             onClick={() => setActiveTab("lyrics")}
           >
-                        Lyrics Writer          {" "}
+            Lyrics Writer
           </button>
-                   {" "}
           <button
             className={getTabClass("beatsense")}
             onClick={() => setActiveTab("beatsense")}
           >
-                        Beat Sense          {" "}
+            Beat Sense
           </button>
-                 {" "}
         </div>
-             {" "}
       </div>
-            {/* Panels */}     {" "}
+
+      {/* Panels */}
       <div className="max-w-7xl mx-auto">
-                       {" "}
         {activeTab === "beat" && (
           <BeatMakerLeftPanel
             description={description}
@@ -112,12 +110,11 @@ This is the new sound, nothing stays the same.
             setBpm={setBpm}
             energy={energy}
             setEnergy={setEnergy}
-            onGenerate={handleGenerateBeat} // Add handlers for Play/Download since they were moved to the panel
-            onPlay={() => console.log("Play Beat from AIMakerPage")}
-            onDownload={() => console.log("Download Beat from AIMakerPage")}
+            onGenerate={handleGenerateBeat}
+            onPlay={() => console.log("Play Beat")}
+            onDownload={() => console.log("Download Beat")}
           />
         )}
-                       {" "}
         {activeTab === "lyrics" && (
           <LyricsMakerLeftPanel
             topic={topic}
@@ -126,14 +123,12 @@ This is the new sound, nothing stays the same.
             setStyle={setStyle}
             length={length}
             setLength={setLength}
-            onGenerateLyrics={handleGenerateLyrics} // Pass the generated lyrics state to the panel for display
+            onGenerateLyrics={handleGenerateLyrics}
             lyricsText={generatedLyrics}
           />
         )}
-                {/* New Tab Content */}       {" "}
-        {activeTab === "beatsense" && <DisabledPLPs />}     {" "}
+        {activeTab === "beatsense" && <DisabledPLPs />}
       </div>
-         {" "}
     </div>
   );
 }

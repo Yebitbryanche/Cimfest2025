@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import MusicWaveLoader from "../../Components/MusicWaveLoader"; // import the loader
 import { FiMusic, FiCpu, FiUsers, FiLock } from "react-icons/fi";
 import Button from "../../Components/Button";
 import { GradientButton } from "../../Components/GradientButton";
@@ -9,6 +11,15 @@ import { BsMusicNote } from "react-icons/bs";
 import images from "../../types/images";
 
 function Home() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 1000); // show loader for 1 second
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) return <MusicWaveLoader />; // show loader before rendering page
+
   return (
     <main className="min-h-screen bg-[#0e0e0f] text-white px-4 sm:px-6 lg:px-16 py-12 mt-12">
 
