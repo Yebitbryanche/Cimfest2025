@@ -21,7 +21,7 @@ function MusicWaveLoader() {
         ))}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes wave {
           0%, 100% { transform: scaleY(0.2); }
           50% { transform: scaleY(1); }

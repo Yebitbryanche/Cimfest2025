@@ -4,11 +4,11 @@ import { FiDownload } from "react-icons/fi";
 import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 
 interface BeatProps {
-  id: string;
-  image: string;
-  title: string;
-  subtitle: string;
-  price: number | string;
+  id?: string;
+  image?: string;
+  title?: string;
+  subtitle?: string;
+  price?: number | string;
   audio?: string; // <-- MAKE OPTIONAL
   downloadUrl?: string;
 }
