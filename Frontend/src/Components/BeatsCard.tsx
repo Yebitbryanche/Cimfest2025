@@ -10,7 +10,7 @@ interface Prop {
   downloadUrl?: string; // Optional: URL to the beat file
 }
 
-const BeatsCard: React.FC<Prop> = ({ image, title, subtitle, price, downloadUrl }) => {
+const BeatsCard: React.FC<Prop> = ({ image, title, subtitle, downloadUrl }) => {
   const [liked, setLiked] = useState(false);
 
   // Toggle like

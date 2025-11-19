@@ -1,20 +1,29 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import SelectInput from "./SelectInput";
 import { GradientButton } from "./GradientButton";
 import images from "../types/images";
 
 // --- TextareaAutosize Component ---
-interface AutosizeProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface AutosizeProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   minRows?: number;
 }
 
-const TextareaAutosize: React.FC<AutosizeProps> = ({ minRows = 1, style, ...props }) => {
+const TextareaAutosize: React.FC<AutosizeProps> = ({
+  minRows = 1,
+  style,
+  ...props
+}) => {
   const ref = useRef<HTMLTextAreaElement | null>(null);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const computedLineHeight = parseInt(getComputedStyle(el).lineHeight || "24", 10);
+
+    const computedLineHeight = parseInt(
+      getComputedStyle(el).lineHeight || "24",
+      10
+    );
     const minHeight = minRows * computedLineHeight;
 
     const resize = () => {
@@ -27,53 +36,47 @@ const TextareaAutosize: React.FC<AutosizeProps> = ({ minRows = 1, style, ...prop
     return () => el.removeEventListener("input", resize);
   }, [minRows]);
 
-  return <textarea ref={ref} style={{ ...style, resize: "none", overflow: "hidden" }} {...props} />;
+  return (
+    <textarea
+      ref={ref}
+      style={{ ...style, resize: "none", overflow: "hidden" }}
+      {...props}
+    />
+  );
 };
+
 // ----------------------------------------------
+// PROPS INTERFACE
+interface LyricsMakerLeftPanelProps {
+  topic: string;
+  setTopic: React.Dispatch<React.SetStateAction<string>>;
+  style: string;
+  setStyle: React.Dispatch<React.SetStateAction<string>>;
+  length: string;
+  setLength: React.Dispatch<React.SetStateAction<string>>;
+  onGenerateLyrics: () => void;
+  lyricsText?: string;
+  loading?: boolean;
+  error?: string;
+}
 
-export default function LyricsMakerLeftPanel() {
-  // default values to avoid Bad Request
-  const [topic, setTopic] = useState("");
-  const [style, setStyle] = useState("Trap");
-  const [length, setLength] = useState("Short (8 bars)");
-  const [lyricsText, setLyricsText] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
-
-  const onGenerateLyrics = async () => {
-    if (!topic.trim()) {
-      setError("Please enter a topic for your lyrics.");
-      return;
-    }
-
-    setLoading(true);
-    setError("");
-    setLyricsText("");
-
-    try {
-      console.log("Sending:", { topic, style, length }); // debug
-
-      const response = await fetch("http://localhost:8000/generate-lyrics", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ topic, style, length }),
-      });
-
-      if (!response.ok) throw new Error(`Server error: ${response.statusText}`);
-
-      const data = await response.json();
-      setLyricsText(data.lyrics);
-    } catch (err) {
-      console.error(err);
-      setError("Failed to generate lyrics. Please try again.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+// ----------------------------------------------
+// COMPONENT USING PROPS (CONTROLLED)
+export default function LyricsMakerLeftPanel({
+  topic,
+  setTopic,
+  style,
+  setStyle,
+  length,
+  setLength,
+  onGenerateLyrics,
+  lyricsText = "",
+  loading = false,
+  error = "",
+}: LyricsMakerLeftPanelProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      {/* Left Side - Input Controls */}
+      {/* Left Side */}
       <div className="bg-[#151515] p-8 rounded-2xl space-y-6 shadow-[0_0_25px_rgba(0,0,0,0.3)]">
         <h2 className="text-2xl font-bold">Create Lyrics</h2>
         <p className="text-gray-400 text-sm">
@@ -112,19 +115,24 @@ export default function LyricsMakerLeftPanel() {
             title="Generate Lyrics"
             onClick={onGenerateLyrics}
             className="w-full flex items-center justify-center gap-2"
-            
           >
-            <img src={images.sparkel} alt="sparkel" className="w-4 h-4 invert" />
+            <img
+              src={images.sparkel}
+              alt="sparkel"
+              className="w-4 h-4 invert"
+            />
             <span>{loading ? "Generating..." : "Generate Lyrics"}</span>
           </GradientButton>
         </div>
       </div>
 
-      {/* Right Side - Lyrics Preview & Tips */}
+      {/* Right Side */}
       <div className="bg-[#151515] border border-gray-700 p-6 rounded-2xl shadow-lg space-y-6">
         <div>
           <h3 className="text-lg font-semibold text-white">Lyrics Preview</h3>
-          <p className="text-sm text-gray-400">Generated lyrics will appear here</p>
+          <p className="text-sm text-gray-400">
+            Generated lyrics will appear here
+          </p>
         </div>
 
         <div className="w-full h-56 p-4 rounded-xl bg-[#1a1a1a] border border-gray-700 overflow-y-auto text-gray-100 text-sm whitespace-pre-wrap">
