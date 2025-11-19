@@ -29,7 +29,7 @@ function Dashboard() {
       {/* Welcome */}
       <div className="mb-8">
         <h1 className="font-bold text-3xl sm:text-4xl lg:text-5xl">
-          Welcome back, <span className="text-primary">Artist</span>
+          Welcome back, <span className="text-primary">Mano-Z</span>
         </h1>
         <p className="text-gray-400 pt-2 text-sm sm:text-base">
           Here's what's happening with your music

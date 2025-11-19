@@ -28,7 +28,7 @@ export default function ArtistHeader() {
 
         {/* Info */}
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold">Artist Name</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold">Mano-Z</h1>
           <p className="text-gray-400 text-sm sm:text-base max-w-xs sm:max-w-sm">
             Producer & Songwriter | Creating vibes since 2020
           </p>

@@ -6,7 +6,7 @@ from db import create_db_and_tables
 
 app = FastAPI()
 
-origin = "http://localhost:5174"
+origin = "http://localhost:5173"
 
 app.add_middleware(
     CORSMiddleware,
