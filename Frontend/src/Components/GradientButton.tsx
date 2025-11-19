@@ -6,7 +6,7 @@ export function GradientButton({ className = "", children, title, ...props }: Bu
     <Button
       {...props}
       title={title} // pass title down
-       className={`text-white bg-gradient-to-r from-[#D37CFF] to-[#A855F7] ${className}`}
+       className={`text-white bg-linear-to-r from-[#D37CFF] to-primary ${className}`}
     >
       {children ?? title} 
     </Button>

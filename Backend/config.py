@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     SECRETE: str
     ALGORITHM: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int
+    OPENAI_KEY: str | None = None  
 
     class Config:
         env_file = ".env"

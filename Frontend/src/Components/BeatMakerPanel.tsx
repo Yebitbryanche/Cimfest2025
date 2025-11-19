@@ -1,4 +1,4 @@
-import React from "react";
+
 import BeatDescriptionInput from "./BeatDescriptionInput";
 import SelectInput from "./SelectInput";
 import SliderInput from "./SliderInput";

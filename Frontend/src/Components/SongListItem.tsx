@@ -13,7 +13,7 @@ export default function SongListItem({ title, plays, likes }: SongItemProps) {
       
       {/* LEFT SECTION */}
       <div className="flex items-center gap-4">
-        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-xl">
+        <div className="w-14 h-14 rounded-xl bg-linear-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white text-xl">
           <BsMusicNoteBeamed />
         </div>
 

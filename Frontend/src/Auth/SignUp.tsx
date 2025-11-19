@@ -3,7 +3,7 @@ import { GradientButton } from "../Components/GradientButton";
 import images from "../types/images";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const base_URL = "http://127.0.0.1:8000"
 
@@ -50,10 +50,16 @@ const SignUp = () => {
       <div className="bg-black/50 text-white p-8 rounded-xl shadow-xl w-full max-w-lg">
         
         {/* Logo & Title */}
-        <div className="flex flex-col items-center mb-8">
-          <img src={images.logo} alt="Mutumbu Logo" className="w-32 mb-4" />
-          <h1 className="text-2xl font-bold">Create your account</h1>
-          <p className="text-gray-400 mt-2">Join Mutumbu and start creating</p>
+        <div className="flex flex-col items-center mb-6 sm:mb-8">
+          <img
+            src={images.logo}
+            alt="Mutumbu Logo"
+            className="w-24 sm:w-32 mb-3"
+          />
+          <h1 className="text-xl sm:text-2xl font-bold">Create your account</h1>
+          <p className="text-gray-400 mt-1 sm:mt-2 text-sm sm:text-base">
+            Join Mutumbu and start creating
+          </p>
         </div>
 
         {/* Email */}
@@ -64,7 +70,7 @@ const SignUp = () => {
             onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="you@example.com"
-            className="border border-gray-600 text-white p-3 placeholder:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
+            className="border border-gray-600 text-white p-3 placeholder:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
         </div>
 
@@ -76,10 +82,11 @@ const SignUp = () => {
             onChange={(e) => setUser_name(e.target.value)}
             type="text"
             placeholder="Your name"
-            className="border border-gray-600 p-3 text-white placeholder:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
+            className="border border-gray-600 p-3 text-white placeholder:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
         </div>
 
+        {/* Phone Number */}
         <div className="flex flex-col mb-4">
           <label className="mb-2 font-medium text-white">Phone Number</label>
           <input
@@ -87,7 +94,7 @@ const SignUp = () => {
             onChange={(e) => setphone(e.target.value)}
             type="text"
             placeholder="Your contact"
-            className="border border-gray-600 text-white p-3 placeholder:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
+            className="border border-gray-600 text-white p-3 placeholder:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
         </div>
 
@@ -100,11 +107,11 @@ const SignUp = () => {
               onChange={(e) => setPassword(e.target.value)}
               type={showPassword ? "text" : "password"}
               placeholder="Enter password"
-              className="w-full border border-gray-600 text-white placeholder:text-gray-400 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
+              className="w-full border border-gray-600 text-white placeholder:text-gray-400 p-3 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
             <span
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-3 text-xl placeholder:text-gray-400 text-gray-500 cursor-pointer"
+              className="absolute right-3 top-3 text-xl text-gray-500 cursor-pointer"
             >
               {showPassword ? <FiEyeOff /> : <FiEye />}
             </span>
@@ -113,12 +120,14 @@ const SignUp = () => {
 
         {/* Confirm Password */}
         <div className="flex flex-col mb-6">
-          <label className="mb-2 font-medium text-white">Confirm Password</label>
+          <label className="mb-2 font-medium text-white">
+            Confirm Password
+          </label>
           <div className="relative">
             <input
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Re-enter password"
-              className="w-full border border-gray-600 text-white p-3 placeholder:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 text-black"
+              className="w-full border border-gray-600 text-white p-3 placeholder:text-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
             <span
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
@@ -146,11 +155,13 @@ const SignUp = () => {
         <GradientButton title="Sign Up" className="w-full" />
 
         {/* Switch to Sign In */}
-        <p className="mt-4 text-center text-gray-400">
+        <p className="mt-4 text-center text-gray-400 text-sm sm:text-base">
           Already have an account?{" "}
-          <span className="text-purple-500 cursor-pointer hover:underline">
-            Sign In
-          </span>
+          <Link to="/auth/signup">
+            <span className="text-purple-500 cursor-pointer hover:underline">
+              Sign Up
+            </span>
+          </Link>
         </p>
       </div>
     </form>

@@ -69,7 +69,7 @@ function Footer() {
 
       {/* Bottom Section */}
       <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
-        <p>© 2024 BeatFlow. All rights reserved.</p>
+        <p>©2025 Mutumbu. All rights reserved.</p>
         <div className="flex gap-6 mt-2 md:mt-0">
           <Link to="/">Privacy</Link>
           <Link to="/">Terms</Link>

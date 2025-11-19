@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes import user
+from routes import lyrics
 from db import create_db_and_tables
 
 app = FastAPI()
 
-origin = "http://localhost:5173"
+origin = "http://localhost:5174"
 
 app.add_middleware(
     CORSMiddleware,
@@ -20,3 +21,5 @@ def start_up():
     create_db_and_tables()
 
 app.include_router(user.router)
+
+app.include_router(lyrics.router)
